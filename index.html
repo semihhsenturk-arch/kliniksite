@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Klinik ve Randevu Bilgileri - Dr. Özel Tanıtım">
+  <title>Uzm. Dr. Yelda Yaren Şentürk | Dermatolog</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Flatpickr CSS for Custom Premium Calendar -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body class="grain-overlay">
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="container">
+      <a href="#" class="logo">
+        <span class="logo-name">Uzm. Dr. Yelda Yaren Şentürk</span>
+        <span class="logo-title">Dermatolog</span>
+      </a>
+      <nav class="nav-links">
+        <div class="nav-item dropdown">
+          <a href="#uzmanliklar" class="dropdown-trigger">Uzmanlıklar <span class="chevron">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#klinik-dermatoloji">Klinik Dermatoloji</a></li>
+            <li><a href="#kozmetik-dermatoloji">Kozmetik Dermatoloji</a></li>
+          </ul>
+        </div>
+        <a href="#hakkinda">Hakkında</a>
+        <a href="#" data-action="open-booking" class="btn-primary" style="padding: 10px 24px; color: #ffffff;">Randevu Talebi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container grid grid-golden">
+        <div class="hero-content">
+          <h1 class="animate-on-scroll">Sağlıklı Cilt,<br>Güvenilir Bakım.</h1>
+          <p class="animate-on-scroll stagger-1" style="font-size: 1.25rem;">
+            Modern tıbbın sunduğu en güncel yaklaşımlarla, sizin ve ailenizin sağlığına değer katıyoruz. Kapsamlı değerlendirme ve kişiye özel tedavi.
+          </p>
+          <div class="hero-actions animate-on-scroll stagger-2" style="margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-md);">
+            <a href="#" data-action="open-booking" class="btn-primary">Hemen Randevu Talebi</a>
+            <a href="#uzmanliklar" class="btn-ghost">Hizmetleri İncele</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper animate-on-scroll stagger-3">
+          <!-- Placeholder doctor image -->
+          <div style="background-color: var(--color-border); aspect-ratio: 4/5; display:flex; align-items:center; justify-content:center; background-image: url('yelda.jpg'); background-size: cover; background-position: center;">
+             
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hakkında Section (Placeholder for Biography) -->
+    <section class="section" id="hakkinda" style="background: var(--color-bg); padding-top: var(--space-4xl); padding-bottom: var(--space-4xl);">
+      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="animate-on-scroll">
+          <p style="color: var(--color-trust-emerald); font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 10px; font-weight: 600;">Kurumsal & Uzmanlık</p>
+          <h2 style="font-size: 2.8rem; margin-bottom: var(--space-xl); color: var(--color-text-primary);">Uzm. Dr. Yelda Yaren Şentürk</h2>
+          <div style="height: 2px; width: 60px; background: var(--color-accent); margin: 0 auto var(--space-xl) auto;"></div>
+          <p style="font-size: 1.25rem; color: var(--color-text-secondary); line-height: 1.8; font-style: italic; opacity: 0.8;">
+            Dermatoloji Uzmanı Dr. Yelda Yaren Şentürk, Kocaeli Üniversitesi Tıp Fakültesi bölümünden 2022 yılında mezun olmuştur. 2028 yılında Dermatoloji alanında asistanlığını tamamladıktan sonra uzmanlık görevine başlamıştır.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section class="section" style="background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container grid grid-3" style="text-align: center;">
+        <div class="stat-item animate-on-scroll">
+          <h2 style="font-size: 3rem; color: var(--color-primary);">5+</h2>
+          <p>Yıllık Deneyim</p>
+        </div>
+        <div class="stat-item animate-on-scroll stagger-1">
+          <h2 style="font-size: 3rem; color: var(--color-primary);">5.000+</h2>
+          <p>Mutlu ve Sağlıklı Hasta</p>
+        </div>
+        <div class="stat-item animate-on-scroll stagger-2">
+          <h2 style="font-size: 3rem; color: var(--color-primary);">%100</h2>
+          <p>Hasta Memnuniyeti</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services / Features -->
+    <section id="uzmanliklar" class="section">
+      <div class="container">
+        <div id="klinik-dermatoloji" class="section-header animate-on-scroll" style="text-align: center; max-width: 600px; margin: 0 auto var(--space-4xl) auto;">
+          <h2>Tıbbi Uzmanlık Alanları</h2>
+          <p style="color: var(--color-primary); font-family: var(--font-display); font-size: 2rem; margin-top:-10px; margin-bottom: 10px;">Klinik Dermatoloji</p>
+          <p>Modern teknoloji ve klinik tecrübemiz ile deri sağlığınızı estetik ve medikal yaklaşımlarla destekliyoruz.</p>
+        </div>
+        
+        <div class="grid-treatments">
+          <!-- 1 -->
+          <a href="#" data-id="akne-tedavisi" class="treatment-item animate-on-scroll">Akne Tedavisi</a>
+          <!-- 2 -->
+          <a href="#" data-id="egzama-tedavisi" class="treatment-item animate-on-scroll stagger-1">Egzama Tedavisi</a>
+          <!-- 3 -->
+          <a href="#" data-id="sac-hastaliklari-ve-sac-dokulmesi" class="treatment-item animate-on-scroll stagger-2">Saç Hastalıkları</a>
+          <!-- 4 -->
+          <a href="#" data-id="nevus-tarama-ve-tedavisi" class="treatment-item animate-on-scroll stagger-3">Nevus (Ben) Taraması</a>
+          <!-- 5 -->
+          <a href="#" data-id="deri-kanserleri-tani-ve-tedavisi" class="treatment-item animate-on-scroll">Deri Kanserleri</a>
+          <!-- 6 -->
+          <a href="#" data-id="urtiker-tedavisi" class="treatment-item animate-on-scroll stagger-1">Ürtiker Tedavisi</a>
+          <!-- 7 -->
+          <a href="#" data-id="vitiligo-tedavisi" class="treatment-item animate-on-scroll stagger-2">Vitiligo Tedavisi</a>
+          <!-- 8 -->
+          <a href="#" data-id="rozase-tedavisi" class="treatment-item animate-on-scroll stagger-3">Rozase Tedavisi</a>
+          <!-- 9 -->
+          <a href="#" data-id="psoriasis-tedavisi" class="treatment-item animate-on-scroll">Sedef (Psoriasis)</a>
+          <!-- 10 -->
+          <a href="#" data-id="verru-tedavisi" class="treatment-item animate-on-scroll stagger-1">Siğil (Verru)</a>
+          <!-- 11 -->
+          <a href="#" data-id="alopesi-areata-tedavisi" class="treatment-item animate-on-scroll stagger-2">Saçkıran (Alopesi)</a>
+          <!-- 12 -->
+          <a href="#" data-id="behcet-hastaligi" class="treatment-item animate-on-scroll stagger-3">Behçet Hastalığı</a>
+          <!-- 13 -->
+          <a href="#" data-id="mantar-hastaliklari" class="treatment-item animate-on-scroll">Mantar Hastalıkları</a>
+          <!-- 14 -->
+          <a href="#" data-id="milia-tedavisi" class="treatment-item animate-on-scroll stagger-1">Milia Tedavisi</a>
+          <!-- 15 -->
+          <a href="#" data-id="ksantelazma-tedavisi" class="treatment-item animate-on-scroll stagger-2">Ksantelazma</a>
+          <!-- 16 -->
+          <a href="#" data-id="kriyoterapi-tedavileri" class="treatment-item animate-on-scroll stagger-3">Kriyoterapi</a>
+          <!-- 17 -->
+          <a href="#" data-id="koter-tedavileri" class="treatment-item animate-on-scroll">Koter Tedavileri</a>
+          <!-- 18 -->
+          <a href="#" data-id="tani-ve-tedavi-amacli-biyopsi" class="treatment-item animate-on-scroll stagger-1">Deri Biyopsisi</a>
+          <!-- 19 -->
+          <a href="#" data-id="keratozis-pilaris-tedavisi" class="treatment-item animate-on-scroll stagger-2">Keratozis Pilaris</a>
+          <!-- 20 -->
+          <a href="#" data-id="alerji-testi" class="treatment-item animate-on-scroll stagger-3">Alerji Testi</a>
+        </div>
+
+        <!-- Kozmetik Dermatoloji -->
+        <div id="kozmetik-dermatoloji" class="section-header animate-on-scroll" style="text-align: center; max-width: 700px; margin: 80px auto var(--space-4xl) auto;">
+          <p style="color: var(--color-primary); font-family: var(--font-display); font-size: 2rem; margin-bottom: 15px;">Kozmetik Dermatoloji</p>
+          <p>Güncel kozmetik uygulamalar ve ileri klinik teknolojiler ile cildinizin güzelliğini güvenle ortaya çıkarıyoruz.</p>
+        </div>
+
+        <div class="grid-treatments">
+          <!-- 1 -->
+          <a href="#" data-id="radyofrekans-rf" class="treatment-item animate-on-scroll">Radyofrekans (RF)</a>
+          <!-- 2 -->
+          <a href="#" data-id="lazer-epilasyon-tedavisi" class="treatment-item animate-on-scroll stagger-1">Lazer (Alexandrite, Nd:YAG)</a>
+          <!-- 3 -->
+          <a href="#" data-id="fraksiyonel-co2-lazer" class="treatment-item animate-on-scroll stagger-2">Fraksiyonel CO2 Lazer</a>
+          <!-- 4 -->
+          <a href="#" data-id="ipl-tedavisi" class="treatment-item animate-on-scroll stagger-3">IPL</a>
+          <!-- 5 -->
+          <a href="#" data-id="q-switch-lazer" class="treatment-item animate-on-scroll">Q-Switch Lazer</a>
+          <!-- 6 -->
+          <a href="#" data-id="hifu-tedavisi" class="treatment-item animate-on-scroll stagger-1">HIFU</a>
+          <!-- 7 -->
+          <a href="#" data-id="kriyoterapi-estetik" class="treatment-item animate-on-scroll stagger-2">Kriyo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA (Yenilenmiş Klinik Temizlik Tasarımı) -->
+    <section class="section clinical-cta">
+      <div class="container clinical-cta-inner">
+        <h2 class="animate-on-scroll">Sağlığınız İçin İlk Adımı Atın</h2>
+        <p class="animate-on-scroll stagger-1">
+          Sorularınız veya randevu talebiniz için bizimle iletişime geçebilirsiniz. Kliniğimizde sizi ağırlamaktan memnuniyet duyarız.
+        </p>
+        <div class="animate-on-scroll stagger-2">
+          <a href="#" data-action="open-contact-hub" class="btn-primary">İletişim Seçenekleri</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding: var(--space-xl) 0; border-top: 1px solid var(--color-border); background: var(--color-bg);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">© 2026 Tüm Hakları Saklıdır.</p>
+        <div class="legal-links" style="display: flex; gap: 20px; font-size: 0.85rem;">
+          <button type="button" id="footerKVKK" style="background:none; border:none; padding:0; color: var(--color-text-secondary); cursor:pointer; text-decoration: none; transition: color 0.3s;">KVKK Metni</button>
+          <button type="button" id="footerCookie" style="background:none; border:none; padding:0; color: var(--color-text-secondary); cursor:pointer; text-decoration: none; transition: color 0.3s;">Çerez Politikası</button>
+          <button type="button" id="footerLegal" style="background:none; border:none; padding:0; color: var(--color-text-secondary); cursor:pointer; text-decoration: none; transition: color 0.3s;">Yasal Uyarı</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Smart Booking Drawer (WhatsApp) -->
+  <div class="drawer-overlay" id="bookingOverlay"></div>
+  <aside class="booking-drawer" id="bookingDrawer">
+    <button class="drawer-close" id="closeDrawer">&times;</button>
+    <div class="drawer-header">
+      <h2>Randevu Al</h2>
+      <p style="color: #ffffff; opacity: 1;">Bilgilerinizi doldurabilirsiniz.</p>
+    </div>
+    <div class="drawer-body">
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="bName">Adınız Soyadınız *</label>
+          <input type="text" id="bName" required placeholder="Örn: Ayşe Yılmaz">
+        </div>
+        <div class="form-group">
+          <label for="bPhone">Telefon Numaranız *</label>
+          <input type="tel" id="bPhone" required placeholder="Örn: 05XX XXX XX XX">
+        </div>
+        <div class="form-group" id="treatmentControlGroup">
+          <label for="bTreatment">İlgilendiğiniz Tedavi *</label>
+          <select id="bTreatment" required>
+            <option value="">Seçiniz...</option>
+            <optgroup label="Klinik Dermatoloji">
+              <option value="Akne Tedavisi">Akne Tedavisi</option>
+              <option value="Egzama Tedavisi">Egzama Tedavisi</option>
+              <option value="Saç Hastalıkları">Saç Hastalıkları</option>
+              <option value="Nevus (Ben) Taraması">Nevus (Ben) Taraması</option>
+              <option value="Deri Kanserleri">Deri Kanserleri</option>
+              <option value="Ürtiker Tedavisi">Ürtiker Tedavisi</option>
+              <option value="Vitiligo Tedavisi">Vitiligo Tedavisi</option>
+              <option value="Rozase Tedavisi">Rozase Tedavisi</option>
+              <option value="Sedef (Psoriasis)">Sedef (Psoriasis)</option>
+              <option value="Siğil (Verru)">Siğil (Verru)</option>
+              <option value="Saçkıran (Alopesi)">Saçkıran (Alopesi)</option>
+              <option value="Behçet Hastalığı">Behçet Hastalığı</option>
+              <option value="Mantar Hastalıkları">Mantar Hastalıkları</option>
+              <option value="Milia Tedavisi">Milia Tedavisi</option>
+              <option value="Ksantelazma">Ksantelazma</option>
+              <option value="Kriyoterapi">Kriyoterapi</option>
+              <option value="Koter Tedavileri">Koter Tedavileri</option>
+              <option value="Deri Biyopsisi">Deri Biyopsisi</option>
+              <option value="Keratozis Pilaris">Keratozis Pilaris</option>
+              <option value="Alerji Testi">Alerji Testi</option>
+            </optgroup>
+            <optgroup label="Kozmetik Dermatoloji">
+              <option value="Radyofrekans (RF)">Radyofrekans (RF)</option>
+              <option value="Lazer (Alexandrite, Nd:YAG)">Lazer (Alexandrite, Nd:YAG)</option>
+              <option value="Fraksiyonel CO2 Lazer">Fraksiyonel CO2 Lazer</option>
+              <option value="IPL">IPL</option>
+              <option value="Q-Switch Lazer">Q-Switch Lazer</option>
+              <option value="HIFU">HIFU</option>
+              <option value="Kriyo">Kriyo</option>
+            </optgroup>
+            <option value="Diger">Diğer</option>
+          </select>
+        </div>
+        <div class="form-group" id="manualInputArea" style="display: none;">
+          <label for="bManualNote">İlgilendiğiniz Tedavi (Diğer)</label>
+          <textarea id="bManualNote" rows="3" placeholder="Lütfen istediğiniz tedaviyi yazınız"></textarea>
+          <button type="button" id="btnBackToList" class="btn-back" >Geri</button>
+        </div>
+        <div class="form-group">
+          <label for="bDate">Randevu Tarihi</label>
+          <input type="text" id="bDate" placeholder="Gün.Ay.Yıl" autocomplete="off" style="width: 100%;">
+        </div>
+        <div class="form-group" id="timeSlotGroup" style="display: none; margin-top: 15px;">
+          <label>Randevu Saati Seçin <span id="timeSlotLoading" style="display:none; font-size:0.85em; color:#af8e55; font-weight:normal; margin-left:10px;">Durum Kontrolü Yapılıyor...</span></label>
+          <div id="timeSlots" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px;">
+            <!-- JavaScript tarafından otomatik eklenecektir (10:00 - 17:00) -->
+          </div>
+          <input type="hidden" id="bTime" required>
+        </div>
+        <button type="submit" id="bSubmitBtn" class="btn-primary" style="width: 100%;">Randevu Talebini Gönder</button>
+        <div id="bookingStatus" style="display:none; margin-top: var(--space-md); font-weight: 600;"></div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Klinik/Cilt Tedavi Detay Drawer -->
+  <div class="drawer-overlay" id="treatmentOverlay"></div>
+  <aside class="booking-drawer" id="treatmentDrawer" style="width:420px; max-width:95vw;">
+    <button class="drawer-close" id="treatmentClose">&times;</button>
+    <div class="drawer-header">
+      <h2 id="treatmentTitle">Tedavi Detayı</h2>
+      <p style="color: #ffffff; opacity: 0.9;">Hastalık/tedavi hakkında kısa bilgi.</p>
+    </div>
+    <div class="drawer-body" id="treatmentBody" style="overflow-y:auto; max-height: calc(100vh - 150px); padding-right: 10px;">
+      <p>Bir tedavi seçin.</p>
+    </div>
+  </aside>
+
+  <!-- Smart Contact Hub Modal -->
+  <div class="hub-overlay" id="contactHubModal">
+    <div class="hub-dialog">
+      <button class="hub-close" id="hubClose">&times;</button>
+      <div class="hub-header">
+        <h2>Nasıl İletişime Geçmek İstersiniz?</h2>
+        <p>Size en pratik gelen yöntemi seçin.</p>
+      </div>
+      <div class="hub-body">
+        <a href="#" data-action="open-booking" class="hub-card hub-to-booking">
+          <div class="hub-icon" style="background: rgba(14, 90, 106, 0.1); color: var(--color-primary);">🗓️</div>
+          <div class="hub-text">
+            <h3>Randevu Talebi</h3>
+            <p>Web sitemiz üzerinden hızlıca randevu oluşturun.</p>
+          </div>
+        </a>
+        <a href="https://wa.me/905373709939?text=Merhaba,%20kliniğinizden%20bilgi%20ve%20randevu%20almak%20istiyorum." target="_blank" class="hub-card">
+          <div class="hub-icon" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">💬</div>
+          <div class="hub-text">
+            <h3>WhatsApp Destek</h3>
+            <p>Hızlı ve kolay bir şekilde mesajla ile iletişime geçin.</p>
+          </div>
+        </a>
+        <a href="tel:+905373709939" class="hub-card">
+          <div class="hub-icon" style="background: rgba(0, 95, 191, 0.1); color: #005fbf;">📞</div>
+          <div class="hub-text">
+            <h3>Telefonla Arayın</h3>
+            <p>Sorularınız için kliniğimizin sabit hattına bağlanın.</p>
+          </div>
+        </a>
+        <a href="https://maps.google.com/?q=Alipaşa+Mah.+İsmetpaşa+Bulvarı+No:5+Daire:3+Çorlu/Tekirdağ" target="_blank" class="hub-card">
+          <div class="hub-icon" style="background: rgba(202, 168, 117, 0.1); color: var(--color-accent);">🗺️</div>
+          <div class="hub-text">
+            <h3>Yol Tarifi Al</h3>
+            <p>Alipaşa Mah. İsmetpaşa Bulvarı No:5 Daire:3 Çorlu/Tekirdağ</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- KVKK/Legal Modal -->
+  <div class="hub-overlay" id="kvkkOverlay">
+    <div class="hub-dialog" style="max-width: 650px;">
+      <button class="hub-close" id="kvkkClose">&times;</button>
+      <div class="hub-header">
+        <h2 style="font-family: var(--font-display); font-size: 2rem;">KVKK Aydınlatma Metni</h2>
+        <p>Kişisel Verilerin İşlenmesine İlişkin Bilgilendirme</p>
+      </div>
+      <div class="hub-body" style="font-size: 0.95rem; line-height: 1.6; max-height: 70vh; overflow-y: auto; padding: 32px; color: var(--color-text-secondary);">
+        <p><strong>Sayın Hastamız / Danışanımız,</strong></p>
+        <p>Yelda Yaren Dermatoloji Muayenehanesi olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) ve ilgili mevzuat kapsamında Veri Sorumlusu sıfatıyla, randevu talebiniz sırasında tarafınızdan sağlanan kişisel verilerinizi aşağıda belirtilen amaçlar doğrultusunda işlemekteyiz.</p>
+        
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">1. Toplanan Kişisel Verileriniz</h4>
+        <p>Randevu formu aracılığıyla topladığımız veriler şunlardır:</p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+          <li>Kimlik bilgileri (ad, soyad)</li>
+          <li>İletişim bilgileri (telefon numarası, e-posta adresi)</li>
+          <li>Sağlık verileriniz (şikayetiniz, mevcut hastalık bilgileriniz, randevu nedeni ile ilgili tıbbi bilgiler)</li>
+        </ul>
+        <p>Bu veriler, randevu alma sırasında doğrudan sizden elektronik ortamda (web sitesi formu) elde edilmektedir.</p>
+        
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">2. Kişisel Verilerinizin İşlenme Amaçları</h4>
+        <p>Kişisel verileriniz ve özel nitelikli kişisel verileriniz (sağlık verileri), aşağıdaki amaçlarla sınırlı olarak işlenmektedir:</p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+          <li>Randevunuzun oluşturulması, takibi ve size randevu onayı/reminder (hatırlatma) gönderilmesi</li>
+          <li>Tıbbi teşhis, tedavi ve bakım hizmetlerinin planlanması ve yürütülmesi</li>
+          <li>Kamu sağlığının korunması, koruyucu hekimlik hizmetlerinin sunulması</li>
+          <li>Muayenehane ile aranızdaki hukuki ilişkinin kurulması ve yürütülmesi</li>
+          <li>Yasal yükümlülüklerimizin yerine getirilmesi</li>
+          <li>İletişim faaliyetlerinin yürütülmesi (randevu değişiklikleri, acil durum bilgilendirmesi)</li>
+        </ul>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">3. Hukuki Sebepler</h4>
+        <p><strong>Sağlık verileriniz dahil özel nitelikli kişisel verileriniz:</strong> 3359 sayılı Sağlık Hizmetleri Temel Kanunu ve KVKK md. 6/3 uyarınca tıbbi teşhis, tedavi ve bakım hizmetlerinin yürütülmesi amacıyla açık rıza aranmaksızın işlenebilir.</p>
+        <p><strong>Diğer kişisel verileriniz:</strong> KVKK md. 5/2’de belirtilen hukuki sebeplere dayanarak işlenmektedir.</p>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">4. Kişisel Verilerinizin Aktarılması</h4>
+        <p>Verileriniz, yukarıdaki amaçlar kapsamında; Yetkili kamu kurum ve kuruluşlarına (Sağlık Bakanlığı, SGK vb.), anlaşmalı laboratuvarlara veya resmi mercilere aktarılabilir.</p>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">5. Haklarınız</h4>
+        <p>KVKK’nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, yanlış verilerin düzeltilmesini isteme, verilerin silinmesini talep etme ve zararın giderilmesini talep etme haklarına sahipsiniz.</p>
+
+        <p style="margin-top: 25px; border-top: 1px solid var(--color-border); padding-top: 20px;">
+          <strong>Veri Sorumlusu:</strong><br>
+          Yelda Yaren Şentürk, Dermatolog<br>
+          <strong>Muayenehane Adresi:</strong> Alipaşa Mah. İsmetpaşa Bulvarı No:5 Daire:3 Çorlu/Tekirdağ<br>
+          <strong>Telefon:</strong> 0537 370 99 39<br>
+          <strong>E-posta:</strong> info@yeldayarensenturk.com
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Çerez Politikası Modal -->
+  <div class="hub-overlay" id="cookieOverlay">
+    <div class="hub-dialog" style="max-width: 650px;">
+      <button class="hub-close" id="cookieClose">&times;</button>
+      <div class="hub-header">
+        <h2 style="font-family: var(--font-display); font-size: 2rem;">Çerez Politikası</h2>
+        <p>Çerez Aydınlatma Metni</p>
+      </div>
+      <div class="hub-body" style="font-size: 0.95rem; line-height: 1.6; max-height: 70vh; overflow-y: auto; padding: 32px; color: var(--color-text-secondary);">
+        <p><strong>Yelda Yaren Şentürk Dermatoloji Muayenehanesi</strong> olarak, internet sitemizi ziyaretiniz sırasında sizlere daha iyi bir kullanıcı deneyimi sunmak amacıyla çerez (cookie) ve benzer teknolojiler kullanmaktayız.</p>
+        
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">1. Çerez Nedir?</h4>
+        <p>Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcınıza kaydedilen küçük metin dosyalarıdır. Bu dosyalar, siteyi daha verimli kullanmanızı sağlar ve bazı tercihlerinizi saklar.</p>
+        
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">2. Hangi Çerezleri Kullanıyoruz?</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+          <li><strong>Zorunlu Çerezler:</strong> Sitenin düzgün çalışması ve randevu formunun iletilebilmesi için zorunludur.</li>
+          <li><strong>İşlevsellik Çerezleri:</strong> Tercihlerinizi (dil, font vb.) hatırlamak için kullanılır.</li>
+          <li><strong>Performans Çerezleri:</strong> Sitenin nasıl kullanıldığını anlamak ve iyileştirmek amacıyla kullanılır (Anonim veri).</li>
+        </ul>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">3. Çerezleri Nasıl Yönetebilirsiniz?</h4>
+        <p>Tarayıcınızın ayarlarından çerezleri tamamen engelleyebilir veya silebilirsiniz. Popüler tarayıcılar (Chrome, Firefox, Safari vb.) üzerinden bu ayarları kolayca gerçekleştirebilirsiniz.</p>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">4. Haklarınız</h4>
+        <p>KVKK'nın 11. maddesi kapsamında; verilerinizin işlenip işlenmediğini öğrenme ve düzeltilmesini isteme haklarına sahipsiniz.</p>
+
+        <p style="margin-top: 25px; border-top: 1px solid var(--color-border); padding-top: 20px;">
+          <strong>Veri Sorumlusu:</strong><br>
+          Yelda Yaren Şentürk, Dermatolog<br>
+          <strong>Muayenehane Adresi:</strong> Alipaşa Mah. İsmetpaşa Bulvarı No:5 Daire:3 Çorlu/Tekirdağ<br>
+          <strong>Telefon:</strong> 0537 370 99 39<br>
+          <strong>E-posta:</strong> info@yeldayarensenturk.com<br>
+          <strong>Son Güncelleme:</strong> Mart 2026
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Yasal Uyarı Modal -->
+  <div class="hub-overlay" id="legalOverlay">
+    <div class="hub-dialog" style="max-width: 650px;">
+      <button class="hub-close" id="legalClose">&times;</button>
+      <div class="hub-header">
+        <h2 style="font-family: var(--font-display); font-size: 2rem;">Yasal Uyarı</h2>
+        <p>Bilgilendirme Amaçlı Genel Şartlar</p>
+      </div>
+      <div class="hub-body" style="font-size: 0.95rem; line-height: 1.6; max-height: 70vh; overflow-y: auto; padding: 32px; color: var(--color-text-secondary);">
+        <p>Bu web sitesi, <strong>Yelda Yaren Şentürk Dermatoloji Muayenehanesi</strong>’ne ait olup bilgilendirme amaçlı olarak hazırlanmıştır. Sitede yer alan tüm içerik genel bilgilendirme ve eğitim amaçlıdır.</p>
+        
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">Önemli Uyarılar</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+          <li>Bu bilgiler hiçbir şekilde tıbbi teşhis, tedavi tavsiyesi veya tıbbi danışmanlık yerine geçmez.</li>
+          <li>Sitedeki hiçbir içerik, doktor muayenesi ve profesyonel tıbbi değerlendirme yerine kullanılmamalıdır.</li>
+          <li>Cilt rahatsızlığınız veya tedavi ihtiyacınız varsa lütfen doğrudan randevu alarak muayene olun.</li>
+          <li>Kendi başınıza yapacağınız uygulamalardan doğabilecek risklerden hekim sorumlu tutulamaz.</li>
+        </ul>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">Telif Hakkı</h4>
+        <p>Bu web sitesinde yer alan tüm içerik telif hakkı ile korunmaktadır. İzinsiz kopyalanması, çoğaltılması veya ticari amaçla kullanılması yasaktır.</p>
+
+        <h4 style="margin: 24px 0 8px; color: var(--color-trust-emerald); font-family: var(--font-body); font-size: 1.1rem;">Sorumluluk Reddi</h4>
+        <p>Web sitesinin kullanımından doğabilecek doğrudan veya dolaylı herhangi bir zarar veya ziyandan Yelda Yaren Şentürk Dermatoloji Muayenehanesi sorumlu tutulamaz.</p>
+
+        <p style="margin-top: 25px; border-top: 1px solid var(--color-border); padding-top: 20px;">
+          <strong>İletişim:</strong><br>
+          Yelda Yaren Şentürk, Dermatolog<br>
+          <strong>Muayenehane Adresi:</strong> Alipaşa Mah. İsmetpaşa Bulvarı No:5 Daire:3 Çorlu/Tekirdağ<br>
+          <strong>Telefon:</strong> 0537 370 99 39<br>
+          <strong>E-posta:</strong> info@yeldayarensenturk.com<br>
+          <strong>Son Güncelleme:</strong> Mart 2026
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer için CSS -->
+  <style>
+.drawer-overlay {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.35); z-index: 9998; display: none;
+}
+.booking-drawer {
+  position: fixed; right: 0; top: 0; height: 100vh; width: 400px; max-width: 95vw;
+  background: #fff; z-index: 9999; box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+  transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+}
+.booking-drawer.active { transform: translateX(0); }
+.drawer-overlay.active { display: block; }  #manualInputArea {
+    display: none;
+    margin-top: var(--space-md);
+  }
+  #manualInputArea textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    resize: vertical;
+  }
+  #btnBackToList {
+    margin-top: var(--space-sm);
+    border: 1px solid #1f2937;
+    color: #1f2937;
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  #btnBackToList:hover {
+    background: #1f2937;
+    color: #fff;
+  }
+  .drawer-close {
+    position: absolute; right: 18px; top: 12px; font-size: 2rem; color: #888; background: none; border: none; cursor: pointer;
+  }
+  .treatment-image img {
+    width: 100%;
+    max-height: 280px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin: 0.45rem auto;
+  }
+  .treatment-image {
+    margin-top: 1rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    border-radius: 12px;
+  }
+@media (max-width: 600px) {
+  .booking-drawer { width: 100vw; }
+}
+</style>
+
+  <!-- JS -->
+  <script src="js/data.js?v=3"></script>
+  <!-- Flatpickr JS & Turkish Localization -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>

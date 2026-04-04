@@ -1,0 +1,10 @@
+{
+  "name": "web-design-rules-site",
+  "version": "1.0.0",
+  "description": "Web Sitesi Tasarım Kuralları & Rehberi - statik site",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

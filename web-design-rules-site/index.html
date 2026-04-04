@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Sitesi Tasarım Kuralları & Rehberi</title>
+  <meta name="description" content="Profesyonel, akılda kalıcı ve production-ready web siteleri için kapsamlı tasarım kuralları ve rehberi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container">
+      <span class="logo">Web Tasarım Rehberi</span>
+      <a href="#kurallar" class="btn-primary">Kurallar</a>
+    </div>
+  </nav>
+  <main>
+    <section class="hero-bg">
+      <div class="container">
+        <h1>Dermatoloji Uzmanı Dr. Yelda Yaren Şentürk</h1>
+        <p>Dermatoloji Uzmanı Dr. Yelda Yaren Şentürk, Kocaeli Üniversitesi Tıp Fakültesi bölümünden 2022 yılında mezun olmuştur. 2028 yılında Dermatoloji alanında asistanlığını tamamladıktan sonra uzmanlık görevine başlamıştır.</p>
+        <a href="#kurallar" class="btn-primary">Kuralları Gör</a>
+      </div>
+    </section>
+    <section id="kurallar" class="container">
+      <h2>1. Tasarım Felsefesi</h2>
+      <ul>
+        <li>Her proje başlamadan önce net bir <b>estetik yön</b> belirle. Rastgele güzel değil, <b>kasıtlı güzel</b> olmalı.</li>
+        <li>Seçtiğin yönü <b>her detayda</b> tutarlı uygula: font, renk, spacing, animasyon, ikonografi.</li>
+        <li>Örnek yönler: Brutalist, Luxury, Editorial, Retro-Futuristic, Organic, Art Deco, Soft, Industrial, Playful, Dark Cinematic, Maximalist Chaos.</li>
+      </ul>
+      <h2>2. Tipografi</h2>
+      <ul>
+        <li><b>Inter, Roboto, Arial, system-ui</b> gibi generic fontları <b>ASLA</b> kullanma.</li>
+        <li>Bir <b>display font</b> + bir <b>body font</b> eşleştirmesi yap.</li>
+        <li>Heading'lerde <code>font-weight: 700-900</code> kullan, cesur ol.</li>
+        <li>Body text minimum <code>16px</code>, ideal <code>18px</code>.</li>
+        <li>Line-height: heading'lerde <code>1.1-1.2</code>, body'de <code>1.5-1.7</code>.</li>
+        <li>Maksimum 2-3 font ailesi. Daha fazlası kaos yaratır.</li>
+      </ul>
+      <h2>3. Renk & Tema</h2>
+      <ul>
+        <li><b>Mor gradient + beyaz arka plan</b> kombinasyonunu <b>ASLA</b> kullanma.</li>
+        <li>Dominant renk + keskin accent renk stratejisi kullan.</li>
+        <li>Renkleri CSS custom properties ile tanımla.</li>
+        <li>Koyu ve açık temalar arasında bilinçli seçim yap.</li>
+      </ul>
+      <h2>4. Layout & Spatial Composition</h2>
+      <ul>
+        <li><b>Cookie-cutter layout</b> yapma. Her bölüm aynı padding ve yapıda olmamalı.</li>
+        <li>Asimetri kullan. Grid-breaking elementler ekle.</li>
+        <li>Generous negative space veya controlled density — ikisinden birini bilinçli seç.</li>
+      </ul>
+      <h2>5. Animasyon & Motion</h2>
+      <ul>
+        <li>Animasyon <b>amaçlı</b> olmalı. Her şeyi animate etme; yüksek etkili anlara odaklan.</li>
+        <li>Sayfa yüklenişinde staggered reveal animasyonu.</li>
+        <li>Scroll-triggered animasyonlar için IntersectionObserver kullan.</li>
+      </ul>
+      <h2>6. Arka Plan & Görsel Derinlik</h2>
+      <ul>
+        <li>Düz beyaz veya düz siyah arka plana <b>varsayılan olarak gitme</b>. Atmosfer yarat.</li>
+        <li>Derinlik katmanları oluştur: background → surface → content.</li>
+        <li>Gradient mesh, noise/grain, geometric patterns, glassmorphism, layered shadows, dot grid/line grid kullanabilirsin.</li>
+      </ul>
+      <h2>7. Bileşen Standartları</h2>
+      <ul>
+        <li>Butonlar, kartlar, navigation ve inputlar için tutarlı stiller kullan.</li>
+      </ul>
+      <h2>8. Responsive Design</h2>
+      <ul>
+        <li>Mobilde hamburger menü, desktop'ta inline navigation.</li>
+        <li>Görseller <code>max-width: 100%</code> ve <code>height: auto</code> olmalı.</li>
+        <li>Mobilde horizontal scroll <b>ASLA</b> olmamalı.</li>
+      </ul>
+      <h2>9. Performans</h2>
+      <ul>
+        <li>Görselleri WebP/AVIF formatında kullan, lazy load uygula.</li>
+        <li>Font yükleme ve kritik CSS optimizasyonu yap.</li>
+      </ul>
+      <h2>10. Erişilebilirlik</h2>
+      <ul>
+        <li>Renk kontrastı, alt text, semantik HTML, focus state ve keyboard navigation'a dikkat et.</li>
+      </ul>
+      <h2>11. Sayfa Yapısı Şablonu</h2>
+      <ol>
+        <li>Navbar</li>
+        <li>Hero</li>
+        <li>Social Proof / Logo Bar</li>
+        <li>Features / Benefits</li>
+        <li>How It Works</li>
+        <li>Testimonials</li>
+        <li>Pricing</li>
+        <li>FAQ</li>
+        <li>Final CTA</li>
+        <li>Footer</li>
+      </ol>
+      <h2>12. YAPMA Listesi (Anti-Patterns)</h2>
+      <ul>
+        <li>Inter, Roboto, Arial kullanma</li>
+        <li>Mor gradient + beyaz arka plan</li>
+        <li>Her şeyi animate etme</li>
+        <li>Generic stock fotoğraf</li>
+        <li>Eşit dağılmış pastel renkler</li>
+        <li>Her bölümde aynı padding</li>
+        <li>box-shadow: 0 2px 4px rgba(0,0,0,0.1) her yerde</li>
+        <li>Lorem ipsum ile tasarlama</li>
+        <li>Kocaman hero image + overlay text</li>
+        <li>12 farklı font-size rastgele</li>
+      </ul>
+      <h2>13. Son Kontrol Listesi</h2>
+      <ul>
+        <li>Tüm linkler çalışıyor</li>
+        <li>Mobil, tablet, desktop'ta test edildi</li>
+        <li>Lighthouse skoru: Performance > 90, Accessibility > 90</li>
+        <li>Tüm görsellerde alt text var</li>
+        <li>Favicon ve meta tag'ler ekli</li>
+        <li>&lt;title&gt; ve &lt;meta description&gt; her sayfada unique</li>
+        <li>Open Graph tag'leri</li>
+        <li>404 sayfası tasarlandı</li>
+        <li>Form'lar doğru çalışıyor ve validation var</li>
+        <li>HTTPS aktif</li>
+        <li>Console'da hata yok</li>
+        <li>Font'lar düzgün yükleniyor</li>
+        <li>Animasyonlar prefers-reduced-motion media query'sine saygı gösteriyor</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="container">
+    <p>&copy; 2026 Web Tasarım Rehberi</p>
+  </footer>
+  <div class="grain-overlay"></div>
+  <script src="script.js"></script>
+</body>
+</html>
