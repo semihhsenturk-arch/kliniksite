@@ -369,38 +369,26 @@ document.addEventListener('DOMContentLoaded', () => {
       onClose: function (selectedDates, dateStr, instance) {
         document.body.classList.remove('date-picker-open');
       },
-      onChange: async function (selectedDates, dateStr, instance) {
+      onChange: function (selectedDates, dateStr, instance) {
         if (!dateStr) return;
         
         const timeGroup = document.getElementById('timeSlotGroup');
-        const timeLoading = document.getElementById('timeSlotLoading');
         const timeSlotsDiv = document.getElementById('timeSlots');
         const bTimeInput = document.getElementById('bTime');
         
         if (!timeGroup) return;
         
+        // Saatleri doğrudan göster (Herhangi bir kontrol yapmadan)
         timeGroup.style.display = 'block';
-        timeLoading.style.display = 'inline';
-        timeSlotsDiv.innerHTML = '';
-        bTimeInput.value = '';
+        renderTimeSlots([], timeSlotsDiv, bTimeInput);
         
-        try {
-          const res = await fetch(`${GOOGLE_SCRIPT_URL}?action=get_booked_slots&date=${encodeURIComponent(dateStr)}`);
-          if (!res.ok) throw new Error('Ağ hatası');
-          const bookedSlots = await res.json();
-          renderTimeSlots(bookedSlots, timeSlotsDiv, bTimeInput);
-        } catch (error) {
-          console.error("Saatler çekilirken hata:", error);
-          // Hata durumunda tüm slotları açık göster ki kullanıcı mağdur olmasın
-          renderTimeSlots([], timeSlotsDiv, bTimeInput);
-        } finally {
-          timeLoading.style.display = 'none';
-        }
+        // Önceki seçimi temizle
+        bTimeInput.value = '';
       }
     });
 
     function renderTimeSlots(bookedSlots, container, hiddenInput) {
-      const allSlots = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+      const allSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"];
       container.innerHTML = '';
       
       allSlots.forEach(slot => {
