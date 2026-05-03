@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPSOfJE332q-Ci1XOAfLtY6CBY0IzyB_HmpAJUgtPMoGzrFM_ND5RpHtzpzLX12-dM/exec';
+  
+  // 0. Mobile Nav Toggle
+  const mobileToggle = document.querySelector('.mobile-nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking links
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+
   // 1. Intersection Observer for scroll animations
   const observerOptions = {
     threshold: 0.15,
@@ -30,133 +51,300 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Select All Interactive Elements
-  const treatmentDrawer = document.getElementById('treatmentDrawer');
+  // 3. Select All Modal Elements
   const treatmentOverlay = document.getElementById('treatmentOverlay');
-  const treatmentClose = document.getElementById('treatmentClose');
+  const bookingV2Overlay = document.getElementById('bookingV2Overlay');
+  const contactHubModal = document.getElementById('contactHubModal');
+  const kvkkOverlay = document.getElementById('kvkkOverlay');
+  const cookieOverlay = document.getElementById('cookieOverlay');
+  const legalOverlay = document.getElementById('legalOverlay');
+
   const treatmentTitle = document.getElementById('treatmentTitle');
   const treatmentBody = document.getElementById('treatmentBody');
+  const treatmentImage = document.getElementById('treatmentImage');
+  const treatmentCategoryBadge = document.getElementById('treatmentCategoryBadge');
 
-  const bookingDrawer = document.getElementById('bookingDrawer');
-  const bookingOverlay = document.getElementById('bookingOverlay');
-  const closeDrawerBtn = document.getElementById('closeDrawer');
-  const bookingForm = document.getElementById('bookingForm');
+  // 4. Booking Multi-Step Controller
+  class BookingController {
+    constructor() {
+      this.currentStep = 1;
+      this.totalSteps = 4;
+      this.data = {
+        category: '',
+        treatment: '',
+        date: '',
+        time: '',
+        name: '',
+        phone: ''
+      };
 
-  const contactHubModal = document.getElementById('contactHubModal');
-  const hubClose = document.getElementById('hubClose');
+      this.init();
+    }
 
-  const kvkkOverlay = document.getElementById('kvkkOverlay');
-  const kvkkClose = document.getElementById('kvkkClose');
-  const openKVKK = document.getElementById('openKVKK');
+    init() {
+      this.setupEventListeners();
+      this.renderServiceStep();
+    }
 
-  const cookieOverlay = document.getElementById('cookieOverlay');
-  const cookieClose = document.getElementById('cookieClose');
-  const footerCookie = document.getElementById('footerCookie');
+    setupEventListeners() {
+      // Step 1: Category Selection
+      document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('click', () => {
+          this.data.category = card.getAttribute('data-category');
+          document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          this.renderServiceStep();
+          this.nextStep();
+        });
+      });
 
-  const legalOverlay = document.getElementById('legalOverlay');
-  const legalClose = document.getElementById('legalClose');
-  const footerLegal = document.getElementById('footerLegal');
+      // Next / Prev Buttons
+      document.getElementById('btnNext').addEventListener('click', () => this.nextStep());
+      document.getElementById('btnPrev').addEventListener('click', () => this.prevStep());
+      document.getElementById('btnFinishBooking').addEventListener('click', () => closeAll());
 
-  // 4. Shared Actions (Consolidated)
-  const closeAll = () => {
-    // Close Treatment Detail
-    if (treatmentDrawer) treatmentDrawer.classList.remove('active');
-    if (treatmentOverlay) treatmentOverlay.classList.remove('active');
-
-    // Close Booking Drawer
-    if (bookingDrawer) {
-      bookingDrawer.classList.remove('active');
-      
-      // Formu Sıfırla (Kapanınca Refresh Hissi)
-      if (typeof bookingForm !== 'undefined' && bookingForm) {
-        bookingForm.reset();
-      }
-      
-      const timeGroup = document.getElementById('timeSlotGroup');
-      if (timeGroup) timeGroup.style.display = 'none';
-      
-      const bDate = document.getElementById('bDate');
-      if (bDate && bDate._flatpickr) {
-        bDate._flatpickr.clear();
-      }
-      
-      const treatmentSelect = document.getElementById('bTreatment');
-      const manualInputArea = document.getElementById('manualInputArea');
-      if (treatmentSelect && manualInputArea) {
-        treatmentSelect.style.display = 'block';
-        manualInputArea.style.display = 'none';
-        const manualNote = document.getElementById('bManualNote');
-        if (manualNote) manualNote.required = false;
+      // Flatpickr Integration for V2
+      if (typeof flatpickr !== 'undefined' && document.getElementById('v2Date')) {
+        flatpickr("#v2Date", {
+          locale: "tr",
+          dateFormat: "d.m.Y",
+          minDate: "today",
+          onChange: (selectedDates, dateStr) => {
+            this.data.date = dateStr;
+            this.renderTimeSlots();
+          }
+        });
       }
     }
-    if (bookingOverlay) bookingOverlay.classList.remove('active');
 
-    // Close Contact Hub
-    if (contactHubModal) contactHubModal.classList.remove('active');
+    renderServiceStep() {
+      const grid = document.getElementById('serviceSelectionGrid');
+      if (!grid || !this.data.category) return;
 
-    // Close KVKK
-    if (kvkkOverlay) kvkkOverlay.classList.remove('active');
+      const services = [];
+      if (this.data.category === 'Klinik Dermatoloji') {
+        services.push(
+          "Akne Tedavisi", "Egzama Tedavisi", "Saç Hastalıkları", "Nevus (Ben) Taraması", 
+          "Deri Kanserleri", "Ürtiker Tedavisi", "Vitiligo Testi", "Rozase Tedavisi", 
+          "Sedef (Psoriasis)", "Siğil (Verru)", "Saçkıran (Alopesi)", "Behçet Hastalığı", 
+          "Mantar Hastalıkları", "Milia Tedavisi", "Ksantelazma", "Kriyoterapi", 
+          "Koter Tedavileri", "Deri Biyopsisi", "Keratozis Pilaris", "Alerji Testi"
+        );
+      } else {
+        services.push(
+          "Radyofrekans (RF)", "Lazer (Alexandrite, Nd:YAG)", "Fraksiyonel CO2 Lazer", 
+          "IPL", "Q-Switch Lazer", "HIFU", "Kriyo"
+        );
+      }
 
-    // Close Cookie
-    if (cookieOverlay) cookieOverlay.classList.remove('active');
+      grid.innerHTML = services.map(s => `<div class="service-card-mini" data-value="${s}">${s}</div>`).join('');
+      
+      grid.querySelectorAll('.service-card-mini').forEach(card => {
+        card.addEventListener('click', () => {
+          this.data.treatment = card.getAttribute('data-value');
+          grid.querySelectorAll('.service-card-mini').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          document.getElementById('v2Treatment').value = this.data.treatment;
+          this.nextStep();
+        });
+      });
+    }
 
-    // Close Legal
-    if (legalOverlay) legalOverlay.classList.remove('active');
+    renderTimeSlots() {
+      const container = document.getElementById('v2TimeSlots');
+      const timeSlotsContainer = document.getElementById('v2TimeSlotsContainer');
+      if (!container || !timeSlotsContainer) return;
+
+      timeSlotsContainer.style.display = 'block';
+      const slots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"];
+      container.innerHTML = slots.map(s => `<div class="time-slot" data-slot="${s}">${s}</div>`).join('');
+
+      container.querySelectorAll('.time-slot').forEach(slot => {
+        slot.addEventListener('click', () => {
+          this.data.time = slot.getAttribute('data-slot');
+          container.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+          slot.classList.add('selected');
+          document.getElementById('v2Time').value = this.data.time;
+        });
+      });
+    }
+
+    nextStep() {
+      if (this.currentStep === 2 && !this.data.treatment) { alert('Lütfen bir hizmet seçin.'); return; }
+      if (this.currentStep === 3 && (!this.data.date || !this.data.time)) { alert('Lütfen tarih ve saat seçin.'); return; }
+      
+      if (this.currentStep < this.totalSteps) {
+        this.goToStep(this.currentStep + 1);
+      } else if (this.currentStep === 4) {
+        this.submitForm();
+      }
+    }
+
+    prevStep() {
+      if (this.currentStep > 1) {
+        this.goToStep(this.currentStep - 1);
+      }
+    }
+
+    goToStep(step) {
+      document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+      
+      document.querySelectorAll('.step-item').forEach(item => {
+        item.classList.remove('active');
+        if (parseInt(item.getAttribute('data-step')) <= step) item.classList.add('active');
+      });
+
+      this.currentStep = step;
+
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const nav = document.getElementById('bookingNav');
+
+      btnPrev.style.visibility = step === 1 ? 'hidden' : 'visible';
+      btnNext.textContent = step === 4 ? 'Randevuyu Tamamla' : 'Devam Et';
+      
+      if (step === 1 || step === 2) {
+        btnNext.style.display = 'none'; // Auto-advance in step 1 and 2
+      } else {
+        btnNext.style.display = 'flex';
+      }
+    }
+
+    async submitForm() {
+      const name = document.getElementById('v2Name').value.trim();
+      const phone = document.getElementById('v2Phone').value.trim();
+      
+      if (!name || !phone) { alert('Lütfen tüm zorunlu alanları doldurun.'); return; }
+
+      const submitBtn = document.getElementById('btnNext');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'İletiliyor...';
+
+      const payload = {
+        name,
+        phone,
+        treatment: this.data.treatment,
+        date: this.data.date,
+        time: this.data.time,
+        source: 'web-form-v2'
+      };
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+          this.showSuccess();
+        } else {
+          throw new Error('Sync error');
+        }
+      } catch (err) {
+        alert('Bir hata oluştu. Lütfen tekrar deneyin veya bizi arayın.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Randevuyu Tamamla';
+      }
+    }
+
+    showSuccess() {
+      document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('stepSuccess').classList.add('active');
+      document.getElementById('bookingNav').style.display = 'none';
+      document.querySelector('.step-indicator').style.display = 'none';
+    }
+
+    reset() {
+      this.currentStep = 1;
+      this.data = { category: '', treatment: '', date: '', time: '', name: '', phone: '' };
+      document.getElementById('bookingFormV2').reset();
+      document.getElementById('v2TimeSlotsContainer').style.display = 'none';
+      document.getElementById('bookingNav').style.display = 'flex';
+      document.querySelector('.step-indicator').style.display = 'flex';
+      this.goToStep(1);
+    }
+  }
+
+  const bookingController = new BookingController();
+
+  // 5. Shared Actions
+  const closeAll = () => {
+    [treatmentOverlay, bookingV2Overlay, contactHubModal, kvkkOverlay, cookieOverlay, legalOverlay].forEach(modal => {
+      if (modal) modal.classList.remove('active');
+    });
+
+    if (bookingController) bookingController.reset();
 
     document.body.style.overflow = '';
   };
 
-  const openTreatmentDetail = (id, titleText) => {
-    if (!treatmentTitle || !treatmentBody || !treatmentDrawer || !treatmentOverlay) return;
-    treatmentTitle.textContent = titleText;
-
+  const openTreatmentDetail = (id, titleText, category) => {
+    if (!treatmentOverlay) return;
+    
+    if (treatmentTitle) treatmentTitle.textContent = titleText;
+    if (treatmentCategoryBadge) treatmentCategoryBadge.textContent = category;
+    
     const content = (window.treatmentsData && window.treatmentsData[id])
       ? window.treatmentsData[id]
-      : '<p>Detaylı bilgi için lütfen kliniğimizle iletişime geçin.</p>';
-
-    treatmentBody.innerHTML = content;
+      : '<p>Bilgilendirme için lütfen kliniğimizle iletişime geçin.</p>';
+    if (treatmentBody) treatmentBody.innerHTML = content;
 
     const imageUrl = (window.treatmentImages && window.treatmentImages[id])
       ? window.treatmentImages[id]
-      : null;
-
-    if (imageUrl) {
-      treatmentBody.innerHTML += `
-        <div class="treatment-image" style="margin-top: 1rem; text-align: center;">
-          <img src="${imageUrl}" alt="${titleText}" onerror="this.onerror=null;this.src='https://picsum.photos/1200/800?grayscale&blur=2'" style="max-width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
-        </div>
-      `;
+      : 'https://picsum.photos/1200/800?grayscale&blur=2';
+    if (treatmentImage) {
+      treatmentImage.src = imageUrl;
     }
 
-    closeAll(); // Ensure nothing else is open
-    treatmentDrawer.classList.add('active');
+    closeAll();
     treatmentOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
-  const openBooking = () => {
-    if (!bookingDrawer || !bookingOverlay) return;
-    closeAll(); // Ensure nothing else is open
-    bookingDrawer.classList.add('active');
-    bookingOverlay.classList.add('active');
+  const openBooking = (treatmentId = '') => {
+    if (!bookingV2Overlay) return;
+    closeAll();
+    
+    if (treatmentId) {
+      // Auto-select treatment logic if needed
+      bookingController.data.treatment = treatmentId;
+      // We could skip to Step 3, but let's keep the flow consistent
+    }
+
+    bookingV2Overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
   const openHub = () => {
     if (!contactHubModal) return;
-    closeAll(); // Ensure nothing else is open
+    closeAll();
     contactHubModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
   // 5. Event Listeners
+  // Close triggers
+  document.querySelectorAll('.modal-close, .treatment-modal-overlay, .booking-v2-overlay, #hubClose, #kvkkClose, #cookieClose, #legalClose').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (e.target === btn || btn.classList.contains('modal-close') || btn.id.includes('Close')) {
+        closeAll();
+      }
+    });
+  });
+
   // Treatment Clicks
   document.querySelectorAll('.treatment-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       const id = item.getAttribute('data-id');
-      const title = item.textContent;
-      if (id) openTreatmentDetail(id, title);
+      const category = item.getAttribute('data-category') || 'Dermatoloji';
+      const span = item.querySelector('span');
+      const title = span ? span.textContent : item.textContent;
+      if (id) openTreatmentDetail(id, title, category);
     });
   });
 
@@ -164,14 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-action="open-booking"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      // Slight delay for smoother transition if another drawer is closing
-      const isAnyActive = document.querySelector('.active');
-      if (isAnyActive) {
-        closeAll();
-        setTimeout(openBooking, 350);
-      } else {
-        openBooking();
-      }
+      openBooking();
     });
   });
 
@@ -183,269 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close Button Listeners
-  if (treatmentClose) treatmentClose.addEventListener('click', closeAll);
-  if (treatmentOverlay) treatmentOverlay.addEventListener('click', closeAll);
-  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeAll);
-  if (bookingOverlay) bookingOverlay.addEventListener('click', closeAll);
+  // KVKK / Legal / Cookie
+  document.querySelectorAll('#openKVKK, #footerKVKK').forEach(el => el?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (kvkkOverlay) kvkkOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }));
+  document.getElementById('footerCookie')?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (cookieOverlay) cookieOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('footerLegal')?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (legalOverlay) legalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
 
-  // Open KVKK Modal
-  if (openKVKK) {
-    openKVKK.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (kvkkOverlay) kvkkOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-  const footerKVKK = document.getElementById('footerKVKK');
-  if (footerKVKK) {
-    footerKVKK.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (kvkkOverlay) kvkkOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  // Open Cookie Modal
-  if (footerCookie) {
-    footerCookie.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (cookieOverlay) cookieOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  // Open Legal Modal
-  if (footerLegal) {
-    footerLegal.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (legalOverlay) legalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  // Close Modals
-  if (kvkkClose) kvkkClose.addEventListener('click', closeAll);
-  if (cookieClose) cookieClose.addEventListener('click', closeAll);
-  if (legalClose) legalClose.addEventListener('click', closeAll);
-  if (hubClose) hubClose.addEventListener('click', closeAll);
-
-// ── Google Apps Script Web App URL ───────────────────────
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPSOfJE332q-Ci1XOAfLtY6CBY0IzyB_HmpAJUgtPMoGzrFM_ND5RpHtzpzLX12-dM/exec';
-
-  // 6. Booking Form Submission
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const submitBtn = document.getElementById('bSubmitBtn');
-      const statusDiv = document.getElementById('bookingStatus');
-
-      // ── Veri toplama ──────────────────────────────────────────
-      const name = document.getElementById('bName').value.trim();
-      const phone = document.getElementById('bPhone').value.trim();
-      const date = document.getElementById('bDate').value || 'Belirtilmedi';
-      const time = document.getElementById('bTime').value || '';
-      
-      if (!time && date !== 'Belirtilmedi') {
-        alert('Lütfen randevu saati seçiniz.');
-        return;
-      }
-
-      // "Diğer/Manuel" seçilmişse textarea değerini al
-      const treatmentSelect = document.getElementById('bTreatment');
-      const manualNote = document.getElementById('bManualNote');
-      const isManual = treatmentSelect.style.display === 'none';
-      const treatment = isManual
-        ? ('Manuel Not: ' + (manualNote ? manualNote.value.trim() : ''))
-        : treatmentSelect.value;
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Gönderiliyor...';
-      statusDiv.style.display = 'none';
-
-      try {
-        // n8n/Script'in okuyacağı tüm alanlar burada gönderiliyor
-        const payload = {
-          name,
-          phone,
-          treatment,
-          date,
-          time, // Yeni eklenen saat parametresi
-          source: 'web-form' // n8n'de filtreleme için
-        };
-
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload),
-        });
-
-        const result = await response.json();
-
-        if (result.status === 'success') {
-          statusDiv.style.display = 'block';
-          statusDiv.style.backgroundColor = '#dcfce3';
-          statusDiv.style.color = '#166534';
-          statusDiv.textContent = 'Talebiniz başarıyla alındı. Sizinle en kısa sürede iletişime geçeceğiz.';
-          bookingForm.reset();
-
-          // "Diğer" alanı açıksa gizle, select'i geri getir
-          if (isManual) {
-            treatmentSelect.style.display = 'block';
-            if (manualNote) {
-              manualNote.closest('#manualInputArea').style.display = 'none';
-              manualNote.value = '';
-            }
-          }
-
-          setTimeout(() => {
-            closeAll();
-            statusDiv.style.display = 'none';
-          }, 3500);
-        } else {
-          throw new Error(result.message || 'Sunucu hatası');
-        }
-      } catch (err) {
-        statusDiv.style.display = 'block';
-        statusDiv.style.backgroundColor = '#fee2e2';
-        statusDiv.style.color = '#991b1b';
-        statusDiv.textContent = 'Bir hata oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Randevu Talebini Gönder';
-      }
-    });
-  }
-
-  // 7. Accessibility: Escape Key Listener
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAll();
-  });
-
-  // 8. Flatpickr Initialization (Premium Immersive Calendar)
-  if (typeof flatpickr !== 'undefined') {
-    const thisYear = new Date().getFullYear();
-    const nextYear = thisYear + 1;
-
-    flatpickr("#bDate", {
-      locale: "tr", // Load first for day names
-      dateFormat: "d.m.Y",
-      minDate: `01.01.${thisYear}`,
-      disable: [
-        function (date) {
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          return date < today;
-        }
-      ],
-      monthSelectorType: "dropdown",
-      disableMobile: "true",
-      animate: true,
-      static: false,
-      appendTo: document.body,
-      onReady: function (selectedDates, dateStr, instance) {
-        // Double check firstDayOfWeek to be 1 (Monday) to match Turkish standard and grid
-        instance.set("locale", { firstDayOfWeek: 1 });
-
-        const yearInput = instance.currentYearElement;
-        if (yearInput) {
-          const yearSelect = document.createElement("select");
-          yearSelect.className = "flatpickr-monthDropdown-months custom-year-select";
-          [thisYear, nextYear].forEach(year => {
-            const option = document.createElement("option");
-            option.value = year;
-            option.text = year;
-            if (year === instance.currentYear) option.selected = true;
-            yearSelect.appendChild(option);
-          });
-          yearSelect.addEventListener("change", (e) => instance.changeYear(parseInt(e.target.value)));
-          yearInput.parentNode.replaceChild(yearSelect, yearInput);
-        }
-      },
-      onOpen: function (selectedDates, dateStr, instance) {
-        document.body.classList.add('date-picker-open');
-      },
-      onClose: function (selectedDates, dateStr, instance) {
-        document.body.classList.remove('date-picker-open');
-      },
-      onChange: function (selectedDates, dateStr, instance) {
-        if (!dateStr) return;
-        
-        const timeGroup = document.getElementById('timeSlotGroup');
-        const timeSlotsDiv = document.getElementById('timeSlots');
-        const bTimeInput = document.getElementById('bTime');
-        
-        if (!timeGroup) return;
-        
-        // Saatleri doğrudan göster (Herhangi bir kontrol yapmadan)
-        timeGroup.style.display = 'block';
-        renderTimeSlots([], timeSlotsDiv, bTimeInput);
-        
-        // Önceki seçimi temizle
-        bTimeInput.value = '';
-      }
-    });
-
-    function renderTimeSlots(bookedSlots, container, hiddenInput) {
-      const allSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"];
-      container.innerHTML = '';
-      
-      allSlots.forEach(slot => {
-        const btn = document.createElement('div');
-        btn.className = 'time-slot';
-        btn.textContent = slot;
-        
-        if (bookedSlots.includes(slot)) {
-          btn.classList.add('disabled');
-        } else {
-          btn.addEventListener('click', () => {
-            // Remove selected class from all
-            container.querySelectorAll('.time-slot').forEach(b => b.classList.remove('selected'));
-            // Add selected to this
-            btn.classList.add('selected');
-            hiddenInput.value = slot;
-          });
-        }
-        
-        container.appendChild(btn);
-      });
-    }
-  }
-
-  // 9. Dynamic "Other" Treatment Logic (Visual Transformation)
-  const treatmentSelect = document.getElementById('bTreatment');
-  const manualInputArea = document.getElementById('manualInputArea');
-  const backBtn = document.getElementById('btnBackToList');
-  const bManualNote = document.getElementById('bManualNote');
-
-  if (treatmentSelect && manualInputArea && bManualNote && backBtn) {
-    treatmentSelect.addEventListener('change', function () {
-      if (this.value === 'Diger') {
-        // Transform: Hide select, show manual area
-        treatmentSelect.style.display = 'none';
-        manualInputArea.style.display = 'block';
-        bManualNote.required = true;
-        bManualNote.focus();
-      }
-    });
-
-    backBtn.addEventListener('click', function () {
-      // Revert: Show select, hide manual area
-      treatmentSelect.style.display = 'block';
-      manualInputArea.style.display = 'none';
-      treatmentSelect.value = ''; // Reset to placeholder
-      bManualNote.required = false;
-      bManualNote.value = ''; // Clear note
-    });
-  }
-
-  // Close buttons and overlay interaction for all drawers
-  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeAll);
-  if (bookingOverlay) bookingOverlay.addEventListener('click', closeAll);
-
-  // Booking form is already handled by the rich submission codeblock above.
-  // If fallback behavior needed, can be added here explicitly.
-
-
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
 });
