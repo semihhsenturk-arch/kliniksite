@@ -892,10 +892,60 @@ p { font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem); margin-bottom: var(--space-m
 }
 
 /* Step 4: Contact Form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-left: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
 .booking-form-v2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+}
+
+.kvkk-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 16px;
+  background: rgba(10, 61, 52, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(10, 61, 52, 0.08);
+  transition: all 0.3s ease;
+}
+
+.kvkk-container:hover {
+  background: rgba(10, 61, 52, 0.05);
+  border-color: rgba(10, 61, 52, 0.15);
+}
+
+.kvkk-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--color-trust-emerald);
+  flex-shrink: 0;
+}
+
+.kvkk-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
 }
 
 .input-v2 {
@@ -985,7 +1035,7 @@ p { font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem); margin-bottom: var(--space-m
     height: 100%;
     overflow-y: auto;
   }
-  .category-grid, .booking-form-v2 {
+  .category-grid {
     grid-template-columns: 1fr;
   }
   .time-slots-grid {

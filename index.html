@@ -295,16 +295,20 @@
             <h3 style="font-family: var(--font-display);">Son olarak bilgilerinizi alalım</h3>
             <div class="booking-form-v2">
               <div class="form-group">
-                <label>Adınız Soyadınız *</label>
+                <label for="v2Name">Adınız Soyadınız *</label>
                 <input type="text" id="v2Name" class="input-v2" placeholder="Örn: Ayşe Yılmaz" required>
               </div>
               <div class="form-group">
-                <label>Telefon Numaranız *</label>
+                <label for="v2Phone">Telefon Numaranız *</label>
                 <input type="tel" id="v2Phone" class="input-v2" placeholder="05XX XXX XX XX" required>
               </div>
             </div>
-            <div style="margin-top: 20px; font-size: 0.85rem; color: var(--color-text-secondary);">
-              <p>Talebinizi göndererek <a href="#" id="v2KvkkLink" style="color: var(--color-trust-emerald); text-decoration: underline;">KVKK Metnini</a> kabul etmiş sayılırsınız.</p>
+            
+            <div class="kvkk-container">
+              <input type="checkbox" id="v2KvkkCheck" class="kvkk-checkbox" required>
+              <label for="v2KvkkCheck" class="kvkk-label">
+                Talebinizi göndererek <a href="#" id="v2KvkkLink" style="color: var(--color-trust-emerald); text-decoration: underline; font-weight: 600;">KVKK Metnini</a> okuduğunuzu ve kabul ettiğinizi onaylıyorsunuz.
+              </label>
             </div>
           </div>
 

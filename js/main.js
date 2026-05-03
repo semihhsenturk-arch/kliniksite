@@ -214,8 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async submitForm() {
       const name = document.getElementById('v2Name').value.trim();
       const phone = document.getElementById('v2Phone').value.trim();
+      const kvkkCheck = document.getElementById('v2KvkkCheck');
       
       if (!name || !phone) { alert('Lütfen tüm zorunlu alanları doldurun.'); return; }
+      if (kvkkCheck && !kvkkCheck.checked) { alert('Devam etmek için KVKK metnini onaylamanız gerekmektedir.'); return; }
 
       const submitBtn = document.getElementById('btnNext');
       submitBtn.disabled = true;
@@ -365,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // KVKK / Legal / Cookie
-  document.querySelectorAll('#openKVKK, #footerKVKK').forEach(el => el?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (kvkkOverlay) kvkkOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }));
+  document.querySelectorAll('#openKVKK, #footerKVKK, #v2KvkkLink').forEach(el => el?.addEventListener('click', (e) => { e.preventDefault(); if (kvkkOverlay) kvkkOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }));
   document.getElementById('footerCookie')?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (cookieOverlay) cookieOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
   document.getElementById('footerLegal')?.addEventListener('click', (e) => { e.preventDefault(); closeAll(); if (legalOverlay) legalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
 
