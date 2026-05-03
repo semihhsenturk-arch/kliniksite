@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Randevu Sidebar Renk Önizleme</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 18px 36px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .option-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    }
+
+    .name {
+      margin: 0 0 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .mock-sidebar {
+      border-radius: 14px;
+      min-height: 280px;
+      padding: 22px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .mock-sidebar h2 {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .mock-sidebar p {
+      margin: 0;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      max-width: 170px;
+      opacity: 0.85;
+    }
+
+    .steps {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .step.active { opacity: 1; }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .codes {
+      margin-top: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.7rem;
+      color: #4b5563;
+      line-height: 1.5;
+      background: #f8fafc;
+      border: 1px solid #eef2f7;
+      border-radius: 10px;
+      padding: 8px;
+      word-break: break-word;
+    }
+
+    /* 1 - Ferah Mavi */
+    .ferah-mavi {
+      background: linear-gradient(145deg, #e8f4fb 0%, #dceef8 55%, #d3e9f6 100%);
+      color: #1e3a4c;
+    }
+    .ferah-mavi .dot { background: #3b82a8; box-shadow: 0 0 0 4px rgba(59, 130, 168, 0.2); }
+
+    /* 2 - Pudra Turuncu */
+    .pudra-turuncu {
+      background: linear-gradient(145deg, #fff4ec 0%, #ffe8d8 55%, #ffd9bf 100%);
+      color: #5d4033;
+    }
+    .pudra-turuncu .dot { background: #d97a43; box-shadow: 0 0 0 4px rgba(217, 122, 67, 0.2); }
+
+    /* 3 - Seftali Krem */
+    .seftali-krem {
+      background: linear-gradient(145deg, #fff1e7 0%, #ffe5d2 55%, #ffd9bd 100%);
+      color: #5a3a2a;
+    }
+    .seftali-krem .dot { background: #e67e4f; box-shadow: 0 0 0 4px rgba(230, 126, 79, 0.2); }
+
+    /* 4 - Soft Terracotta */
+    .soft-terracotta {
+      background: linear-gradient(145deg, #fdf0ea 0%, #f9dfd3 55%, #f4cfbf 100%);
+      color: #5c3b33;
+    }
+    .soft-terracotta .dot { background: #c86e4f; box-shadow: 0 0 0 4px rgba(200, 110, 79, 0.2); }
+
+    /* 5 - Adaçayi Bej */
+    .adacayi-bej {
+      background: linear-gradient(145deg, #eef4ea 0%, #e4eddc 55%, #d9e5ce 100%);
+      color: #3f4c3d;
+    }
+    .adacayi-bej .dot { background: #6f8c6e; box-shadow: 0 0 0 4px rgba(111, 140, 110, 0.2); }
+
+    /* 6 - Notr Gri Mavi */
+    .notr-gri-mavi {
+      background: linear-gradient(145deg, #f0f3f6 0%, #e5ebf1 55%, #dce5ee 100%);
+      color: #334155;
+    }
+    .notr-gri-mavi .dot { background: #64748b; box-shadow: 0 0 0 4px rgba(100, 116, 139, 0.2); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Randevu Sol Panel Renk Seçenekleri</h1>
+    <p class="lead">Beğendiğin temayı seç, mevcut randevu modalına direkt uygulayayım.</p>
+
+    <section class="grid">
+      <article class="option-card">
+        <p class="name">1) Ferah Mavi</p>
+        <div class="mock-sidebar ferah-mavi">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#e8f4fb → #dceef8 → #d3e9f6</div>
+      </article>
+
+      <article class="option-card">
+        <p class="name">2) Pudra Turuncu</p>
+        <div class="mock-sidebar pudra-turuncu">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#fff4ec → #ffe8d8 → #ffd9bf</div>
+      </article>
+
+      <article class="option-card">
+        <p class="name">3) Şeftali-Krem</p>
+        <div class="mock-sidebar seftali-krem">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#fff1e7 → #ffe5d2 → #ffd9bd</div>
+      </article>
+
+      <article class="option-card">
+        <p class="name">4) Soft Terracotta</p>
+        <div class="mock-sidebar soft-terracotta">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#fdf0ea → #f9dfd3 → #f4cfbf</div>
+      </article>
+
+      <article class="option-card">
+        <p class="name">5) Adaçayı-Bej</p>
+        <div class="mock-sidebar adacayi-bej">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#eef4ea → #e4eddc → #d9e5ce</div>
+      </article>
+
+      <article class="option-card">
+        <p class="name">6) Nötr Gri-Mavi</p>
+        <div class="mock-sidebar notr-gri-mavi">
+          <h2>Randevu Al</h2>
+          <p>Size en uygun zamanı seçin, uzman kadromuzla yanınızda olalım.</p>
+          <div class="steps">
+            <div class="step active"><span class="dot"></span><span>Alan Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Hizmet Seçimi</span></div>
+            <div class="step"><span class="dot"></span><span>Tarih & Saat</span></div>
+            <div class="step"><span class="dot"></span><span>Bilgileriniz</span></div>
+          </div>
+        </div>
+        <div class="codes">#f0f3f6 → #e5ebf1 → #dce5ee</div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

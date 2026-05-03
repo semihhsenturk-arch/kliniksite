@@ -3,15 +3,19 @@
 
 :root {
   /* Ana Renkler (Vivid Blue) */
-  --color-primary: #005fbf;     /* Bright Blue */
+  --color-primary: #005fbf;
+  /* Bright Blue */
   --color-primary-rgb: 0, 95, 191;
-  --color-secondary: #003d7a;   /* Darker Blue */
-  --color-accent: #b08d57;      /* Deep prestigious Gold */
+  --color-secondary: #003d7a;
+  /* Darker Blue */
+  --color-accent: #b08d57;
+  /* Deep prestigious Gold */
 
   /* Güven Rengi (Option 2 - Deep Emerald - Only for Booking Form) */
-  --color-trust-emerald: #0a3d34; 
+  --color-trust-emerald: #0a3d34;
   --color-trust-emerald-dark: #072b25;
-  --color-bg: #fcfafa;          /* Soft Pearl */
+  --color-bg: #fcfafa;
+  /* Soft Pearl */
   --color-bg-rgb: 252, 250, 250;
   --color-surface: #ffffff;
   --color-text-primary: #1e293b;
@@ -45,14 +49,14 @@
   /* Tipografi */
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
-  
+
   /* Luxury & Glassmorphism Tokens */
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.5);
   --glass-blur: 12px;
   --step-active: var(--color-trust-emerald);
   --luxury-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.2);
-  
+
   /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);

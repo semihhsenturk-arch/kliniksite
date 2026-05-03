@@ -93,8 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
           this.data.category = card.getAttribute('data-category');
           document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
           card.classList.add('selected');
-          this.renderServiceStep();
-          this.nextStep();
+          const treatmentInput = document.getElementById('v2Treatment');
+
+          if (this.data.category === 'Genel Muayene') {
+            this.data.treatment = 'Genel Muayene';
+            if (treatmentInput) treatmentInput.value = this.data.treatment;
+            this.goToStep(3);
+          } else {
+            this.data.treatment = '';
+            if (treatmentInput) treatmentInput.value = '';
+            this.renderServiceStep();
+            this.nextStep();
+          }
         });
       });
 
@@ -130,6 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
           "Mantar Hastalıkları", "Milia Tedavisi", "Ksantelazma", "Kriyoterapi", 
           "Koter Tedavileri", "Deri Biyopsisi", "Keratozis Pilaris", "Alerji Testi"
         );
+      } else if (this.data.category === 'Genel Muayene') {
+        services.push("Genel Muayene");
       } else {
         services.push(
           "Radyofrekans (RF)", "Lazer (Alexandrite, Nd:YAG)", "Fraksiyonel CO2 Lazer", 
@@ -203,9 +215,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btnPrev.style.visibility = step === 1 ? 'hidden' : 'visible';
       btnNext.textContent = step === 4 ? 'Randevuyu Tamamla' : 'Devam Et';
+      if (step === 4) {
+        btnNext.classList.add('btn-finish');
+      } else {
+        btnNext.classList.remove('btn-finish');
+      }
       
       if (step === 1 || step === 2) {
-        btnNext.style.display = 'none'; // Auto-advance in step 1 and 2
+        btnNext.style.display = 'none';
       } else {
         btnNext.style.display = 'flex';
       }
